@@ -30,8 +30,8 @@ import io.swagger.annotations.ApiParam;
  */
 @Api(value = "user", description = "用户管理", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
-@RequestMapping("user")
-public class UserController {
+@RequestMapping("/user")
+public class UserController extends BaseController{
 
 	// 列出某个类目的所有规格
 	@ApiOperation(value = "获得用户列表", notes = "列表信息", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_VALUE)
