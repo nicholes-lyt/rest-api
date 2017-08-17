@@ -82,7 +82,17 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		
+		<!-- 监控 -->
+		<dependency>
+		    <groupId>de.codecentric</groupId>  
+		    <artifactId>spring-boot-admin-server</artifactId>  
+		    <version>1.5.0</version>  
+		</dependency>  
+		<dependency>  
+		    <groupId>de.codecentric</groupId>  
+		    <artifactId>spring-boot-admin-server-ui</artifactId>  
+		    <version>1.5.0</version>  
+		</dependency> 
 		
 		<dependency>
 			<groupId>com.google.code.gson</groupId>

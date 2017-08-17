@@ -29,6 +29,8 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import de.codecentric.boot.admin.config.EnableAdminServer;
+
 /**
  * 
  * @ClassName: Application
@@ -40,6 +42,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @SpringBootApplication
 @EnableAspectJAutoProxy
 @EnableAsync
+@EnableAdminServer
 @ComponentScan("com.rest.api")
 public class Application extends WebMvcConfigurerAdapter{
 
