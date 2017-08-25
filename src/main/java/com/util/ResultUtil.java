@@ -12,6 +12,28 @@ import com.rest.api.model.Result;
  */
 public class ResultUtil {
 	
+	private static Result<Object> result = null;
+	
+	static {
+		getInstance();
+	}
+	
+	/**
+	 * 
+	 * @Description: 单例模式
+	 * @author yuting.li
+	 * @version 1.0 
+	 * @date 2017年8月24日 下午8:20:11 
+	 * @return 
+	 * @return Result<Object>
+	 */
+	public static Result<Object> getInstance(){
+		if(result == null) {
+			result = new Result<Object>();
+		}
+		return result;
+	}
+	
 	/**
 	 * 
 	 * @Description: 返回结果集
@@ -25,7 +47,6 @@ public class ResultUtil {
 	 * @return Result<Object>
 	 */
 	public static Result<Object> setData(Object t,Integer code,String msg){
-		Result<Object> result = new Result<>();
 		result.setData(t == null ? "{无数据}" : t);
 		result.setCode(code);
 		result.setMsg(msg);
