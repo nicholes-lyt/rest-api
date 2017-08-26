@@ -80,5 +80,11 @@ public class Result<T> implements Serializable {
 	public void setData(T data) {
 		this.data = data;
 	}
-
+	
+	public void setSuccessInfo(Integer code,String msg,T data) {
+		this.code = code;
+		this.msg = msg;
+		this.setData(data);
+	}
+	
 }

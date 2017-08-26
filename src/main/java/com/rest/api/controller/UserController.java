@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiParam;
  * @version 1.0 
  * @date 2017年8月12日 下午4:42:23
  */
-@Api(value = "user", description = "用户管理", produces = MediaType.APPLICATION_JSON_VALUE)
+@Api(value = "用户管理", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
 @RequestMapping("/user")
 public class UserController extends BaseController{
@@ -37,11 +37,13 @@ public class UserController extends BaseController{
 	@ApiOperation(value = "获得用户列表", notes = "列表信息", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public Result<Object> list(
+	public Result<List<User>> list(
 			@ApiParam(value = "分类ID", required = false) @RequestParam(required=false) Long categoryId,
 			@ApiParam(value = "分类ID", required = false) @RequestParam(required=false) Long categoryId2,
 			@ApiParam(value = "token", required = true) @RequestParam String token) {
-		return ResultUtil.setData(getUserList(), 1, "success");
+		Result<List<User>> ru = new Result<>();
+		ru.setSuccessInfo(200, "success", getUserList());
+		return ru;
 	}
 
 	@ApiOperation(value = "添加用户", notes = "获取商品信息(用于数据同步)", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_VALUE)
