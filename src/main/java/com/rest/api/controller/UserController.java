@@ -17,6 +17,8 @@ import com.rest.api.model.User;
 import com.util.ResultUtil;
 
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -41,6 +43,23 @@ public class UserController extends BaseController{
 			@ApiParam(value = "分类ID", required = false) @RequestParam(required=false) Long categoryId,
 			@ApiParam(value = "分类ID", required = false) @RequestParam(required=false) Long categoryId2,
 			@ApiParam(value = "token", required = true) @RequestParam String token) {
+		Result<List<User>> ru = new Result<>();
+		ru.setSuccessInfo(200, "success", getUserList());
+		return ru;
+	}
+	
+	@ApiOperation(value = "获得用户列表", notes = "列表信息", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiImplicitParams({
+		@ApiImplicitParam(name="categoryId", value = "分类ID", required = false, dataType = "Long"),
+		@ApiImplicitParam(name="categoryId2", value = "分类ID", required = false, dataType = "Long"),
+		@ApiImplicitParam(name="token", value = "分类ID", required = true, dataType = "String")
+	})
+	@ResponseBody
+	@RequestMapping(value = "listdata", method = RequestMethod.GET)
+	public Result<List<User>> listdata(
+			@RequestParam(required = false) Long categoryId,
+			@RequestParam(required = false) Long categoryId2,
+			@RequestParam String token) {
 		Result<List<User>> ru = new Result<>();
 		ru.setSuccessInfo(200, "success", getUserList());
 		return ru;
