@@ -47,23 +47,7 @@ public class UserController extends BaseController{
 		ru.setSuccessInfo(200, "success", getUserList());
 		return ru;
 	}
-	
-	@ApiOperation(value = "获得用户列表", notes = "列表信息", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiImplicitParams({
-		@ApiImplicitParam(name="categoryId", value = "分类ID", required = false, dataType = "Long"),
-		@ApiImplicitParam(name="categoryId2", value = "分类ID", required = false, dataType = "Long"),
-		@ApiImplicitParam(name="token", value = "分类ID", required = true, dataType = "String")
-	})
-	@ResponseBody
-	@RequestMapping(value = "listdata", method = RequestMethod.GET)
-	public Result<List<User>> listdata(
-			@RequestParam(required = false) Long categoryId,
-			@RequestParam(required = false) Long categoryId2,
-			@RequestParam String token) {
-		Result<List<User>> ru = new Result<>();
-		ru.setSuccessInfo(200, "success", getUserList());
-		return ru;
-	}
+
 
 	@ApiOperation(value = "添加用户", notes = "获取商品信息(用于数据同步)", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody

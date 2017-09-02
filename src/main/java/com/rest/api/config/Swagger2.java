@@ -39,6 +39,7 @@ public class Swagger2 {
                 .description("测试服务提供的APIs")// API描述
                 .contact("demo")// 联系人
                 .version("1.0")// 版本号
+                .termsOfServiceUrl("http://localhost:8088/")
                 .build();
     }
 

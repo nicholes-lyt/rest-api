@@ -31,7 +31,7 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
 		String msg = "系统内部错误";
-
+	    ex.printStackTrace();
 		if (ex instanceof org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException
 				|| ex instanceof NoHandlerFoundException) {
 			msg = "未找到";
