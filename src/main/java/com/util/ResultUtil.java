@@ -48,7 +48,7 @@ public class ResultUtil {
 	 */
 	public static Result<Object> setData(Object t,Integer code,String msg){
 		result.setData(t == null ? "{无数据}" : t);
-		result.setCode(code);
+		result.setCode(code+"");
 		result.setMsg(msg);
 		return result;
 	}

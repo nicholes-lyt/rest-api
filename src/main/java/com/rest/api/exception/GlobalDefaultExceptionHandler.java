@@ -1,14 +1,20 @@
-package com.rest.api.controller;
+package com.rest.api.exception;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindException;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
@@ -22,16 +28,23 @@ import org.springframework.web.multipart.support.MissingServletRequestPartExcept
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import com.rest.api.model.Result;
+import com.rest.api.model.SysCode;
+
 @ControllerAdvice
 public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandler {
+	
+	private Logger logger = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
 
 	@SuppressWarnings("deprecation")
 	@Override
 	@ResponseBody
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
 			HttpStatus status, WebRequest request) {
+		logger.error(String.format("remote host %s ,uri %s , referer %s", request.getLocale(), request.getContextPath(), request.getHeader(HttpHeaders.REFERER)));
+        logger.error(ex.getMessage(), ex);
+		Result<Object> result = new Result<Object>();
 		String msg = "系统内部错误";
-	    ex.printStackTrace();
 		if (ex instanceof org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException
 				|| ex instanceof NoHandlerFoundException) {
 			msg = "未找到";
@@ -43,20 +56,34 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
 			msg = "不接受";
 		} else if (ex instanceof MissingServletRequestParameterException || ex instanceof ServletRequestBindingException
 				|| ex instanceof TypeMismatchException || ex instanceof HttpMessageNotReadableException
-				|| ex instanceof MethodArgumentNotValidException || ex instanceof MethodArgumentNotValidException
 				|| ex instanceof MissingServletRequestPartException || ex instanceof BindException) {
 			msg = "错误请求";
+		} else if(ex instanceof MethodArgumentNotValidException){
+			// 对象值验证
+			MethodArgumentNotValidException valid = (MethodArgumentNotValidException)ex;
+			BindingResult bindingResult = valid.getBindingResult();
+	        List<FieldError> listFieldError = bindingResult.getFieldErrors();
+	        List<Map<String, String>> validList = new ArrayList<>();
+	        for(FieldError fieldError : listFieldError){
+	        	Map<String, String> mapmsg = new HashMap<>();
+	        	mapmsg.put(fieldError.getField(), fieldError.getDefaultMessage());
+	            validList.add(mapmsg);
+	        }
+	        result.setBizCodeFallInfo(SysCode.SYS_PARAM_ERROR,validList);
+			return new ResponseEntity<>(result, headers, status);
 		} else {
 			logger.error("系统错误", ex);
-
 			msg = ex.getMessage();
 		}
 
-		Map<String, Object> map = new HashMap<>(2);
+		
+		result.setBizCodeFallInfo(SysCode.FAIL,msg);
 
-		map.put("status", status.value());
-		map.put("msg", msg);
-
-		return new ResponseEntity<>(map, headers, status);
+		return new ResponseEntity<>(result, headers, status);
 	}
+	
+	
+	
+
+
 }
