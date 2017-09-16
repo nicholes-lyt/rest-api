@@ -116,8 +116,11 @@
 		  <version>1.5</version>
 		</dependency>
 		<!--swagger2 end-->
-		
-		
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-lang3</artifactId>
+			<version>3.4</version>
+		</dependency>
 	</dependencies>
 
 
