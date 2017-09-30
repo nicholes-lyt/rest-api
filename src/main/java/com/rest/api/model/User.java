@@ -22,7 +22,8 @@ public class User{
 	
 	@ApiModelProperty(value = "密码", required = true)
 	private String password;
-
+	
+	@NotBlank(message="性别不能为空!")
 	@ApiModelProperty(value = "性别")
 	private Integer sex;
 	

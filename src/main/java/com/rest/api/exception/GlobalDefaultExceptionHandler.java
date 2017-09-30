@@ -58,6 +58,8 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
 				|| ex instanceof TypeMismatchException || ex instanceof HttpMessageNotReadableException
 				|| ex instanceof MissingServletRequestPartException || ex instanceof BindException) {
 			msg = "错误请求";
+		} else if(ex instanceof NotLoginException) {
+			msg = "未登录";
 		} else if(ex instanceof MethodArgumentNotValidException){
 			// 对象值验证
 			MethodArgumentNotValidException valid = (MethodArgumentNotValidException)ex;

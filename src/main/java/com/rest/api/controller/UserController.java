@@ -15,15 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rest.api.exception.BaseException;
 import com.rest.api.model.Result;
 import com.rest.api.model.SysCode;
 import com.rest.api.model.User;
 import com.util.ResultUtil;
 
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 
@@ -58,7 +55,7 @@ public class UserController extends BaseController{
 	@ApiOperation(value = "添加用户", notes = "获取商品信息(用于数据同步)", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@RequestMapping(value = "add", method = RequestMethod.POST)
-	public Result<Object> add(@ApiParam(name="add", value="用户对象" , required=true)@Valid@RequestBody User user) {
+	public Result<Object> add(@ApiParam(name="add", value="用户对象" , required=true)@Valid @RequestBody User user) {
 		String u = findUser(user);
 		return ResultUtil.setData(u, 1, "success");
 	}
