@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -32,22 +32,23 @@ import io.swagger.annotations.ApiParam;
  * @version 1.0 
  * @date 2017年8月12日 下午4:42:23
  */
-@Controller
+
 @Api(value = "用户管理", produces = MediaType.APPLICATION_JSON_VALUE)
 @RestController
 @RequestMapping("/user")
-public class UserController extends BaseController{
+public class UserController{
 
 	// 列出某个类目的所有规格
 	@ApiOperation(value = "获得用户列表", notes = "列表信息", httpMethod = "GET", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	@RequestMapping(value = "list", method = RequestMethod.GET)
-	public Result<List<User>> list(
+	public Result<List<User>> list(HttpSession session,
 			@ApiParam(value = "分类ID", required = false) @RequestParam(required=false) Long categoryId,
 			@ApiParam(value = "分类ID", required = false) @RequestParam(required=false) Long categoryId2,
 			@ApiParam(value = "token", required = true) @RequestParam String token) {
 		Result<List<User>> ru = new Result<>();
 		ru.setBizCodeSuccessInfo(SysCode.SUCCESS, getUserList());
+		System.out.println("获取session中信息："+session.getAttribute("userId"));
 		return ru;
 	}
 

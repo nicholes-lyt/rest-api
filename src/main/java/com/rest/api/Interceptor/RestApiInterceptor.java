@@ -38,16 +38,20 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter{
 		HandlerMethod handlerMethod = (HandlerMethod) handler;
 		Method method = handlerMethod.getMethod();
 		
+		// 将head信息中添加到session里面
+		HttpSession session = request.getSession(true);
+		session.setAttribute("userId", 1);
 		
 		logger.info("获取拦截方法："+method);
 		
-		/*HttpSession session = request.getSession(true);
+		
+		/*
 		User user = getLoginUser(session);
 		if (user == null) {
 			throw new NotLoginException(1111, "您未登录系统或者登录已超时,请重新登录");
 		}*/
 		
-		return true;
+		return super.preHandle(request, response, handlerMethod);
 	}
 
 	/**
@@ -68,6 +72,7 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter{
 	 *            会话对象
 	 * @return User
 	 */
+	@SuppressWarnings("unused")
 	private User getLoginUser(HttpSession session) {
 		if (session == null)
 			return null;

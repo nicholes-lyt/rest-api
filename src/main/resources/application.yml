@@ -21,8 +21,19 @@ logging:
 
     
 server:
-    port: 8088
+  port: 8088
+  compression:
+    enabled: true
+    mime-types: application/json,application/xml,text/html,text/javascript,text/css,text/xml,text/plain
+    min-response-size: 2048
+  tomcat:
+    accept-count: 400
+    uri-encoding: utf-8
+    min-spare-threads: 25
+    max-threads: 400
+  connection-timeout: 20000
 
+  
 
     
 
