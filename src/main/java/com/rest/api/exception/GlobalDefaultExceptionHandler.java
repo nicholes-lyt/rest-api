@@ -1,17 +1,23 @@
 package com.rest.api.exception;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.ValidationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.TypeMismatchException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -22,7 +28,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.multipart.support.MissingServletRequestPartException;
 import org.springframework.web.servlet.NoHandlerFoundException;
@@ -85,7 +93,25 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
 	}
 	
 	
-	
+	@SuppressWarnings("rawtypes")
+	@ExceptionHandler(Throwable.class)
+	@ResponseStatus(HttpStatus.OK)
+	@ResponseBody
+	public Result handleException(Throwable e, HttpServletResponse response) throws IOException {
+		logger.error(e.getMessage(), e);
+		response.setHeader(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE);
+		Result<Object> result = new Result<Object>();
+		if (e.getCause() instanceof ValidationException || e instanceof ValidationException) {
+			result.setBizCodeFallInfo(SysCode.FAIL, e.getCause().getMessage());
+		} else {
+			if (!StringUtils.isEmpty(e.getMessage())) {
+				result.setBizCodeFallInfo(SysCode.FAIL, e.getMessage());
+			} else {
+				result.setBizCodeFallInfo(SysCode.FAIL, "系统异常!!!");
+			}
+		}
+		return result;
+	}
 
 
 }

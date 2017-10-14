@@ -60,6 +60,17 @@ public class UserController{
 		String u = findUser(user);
 		return ResultUtil.setData(u, 1, "success");
 	}
+	
+	@SuppressWarnings("unused")
+	@ApiOperation(value = "测试异常", notes = "测试throw new Exception(\"测试异常\")", httpMethod = "POST", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ResponseBody
+	@RequestMapping(value = "testEx", method = RequestMethod.POST)
+	public Result<Object> test() throws Exception {
+		if(true) {
+			throw new Exception("测试异常");
+		}
+		return ResultUtil.setData(null, 1, "success");
+	}
 
 	private String findUser(User user) {
 		user.setToken("userToken");
