@@ -26,7 +26,7 @@ public class RestApiConfiguration extends WebMvcConfigurerAdapter{
 	 */
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
-		registry.addInterceptor(restApiInterceptor);
+		//registry.addInterceptor(restApiInterceptor);
 	}
 	
 }

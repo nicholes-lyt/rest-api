@@ -16,9 +16,9 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<tomcat.version>8.5.13</tomcat.version>
-		<thymeleaf-layout-dialect.version>2.2.1</thymeleaf-layout-dialect.version>
-		<thymeleaf-extras-springsecurity4.version>3.0.2.RELEASE</thymeleaf-extras-springsecurity4.version>
+		<tomcat.version>8.5.23</tomcat.version>
+		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
+		<thymeleaf-extras-springsecurity4.version>3.0.8.RELEASE</thymeleaf-extras-springsecurity4.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<springfox-swagger2.version>2.2.2</springfox-swagger2.version>
 		<springfox-swagger-ui.version>2.2.2</springfox-swagger-ui.version>
@@ -27,7 +27,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.6.RELEASE</version>
+		<version>1.5.9.RELEASE</version>
 	</parent>
 
 	<repositories>
@@ -58,20 +58,44 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-tomcat</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
 		<dependency>
 	      <groupId>org.springframework.boot</groupId>
 	      <artifactId>spring-boot-starter-thymeleaf</artifactId>
 	    </dependency>
-		<!-- <dependency>
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-websocket</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
-		</dependency> -->
+		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- undertow -->
+		<dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-starter-undertow</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -86,12 +110,12 @@
 		<dependency>
 		    <groupId>de.codecentric</groupId>  
 		    <artifactId>spring-boot-admin-server</artifactId>  
-		    <version>1.5.0</version>  
+		    <version>1.5.6</version>  
 		</dependency>  
 		<dependency>  
 		    <groupId>de.codecentric</groupId>  
 		    <artifactId>spring-boot-admin-server-ui</artifactId>  
-		    <version>1.5.0</version>  
+		    <version>1.5.6</version>  
 		</dependency> 
 		
 		<dependency>
@@ -130,7 +154,7 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<dependencies>
+				<!-- <dependencies>
 					<dependency>
 						<groupId>org.springframework</groupId>
 						<artifactId>springloaded</artifactId>
@@ -143,15 +167,11 @@
 							<goal>repackage</goal>
 						</goals>
 					</execution>
-				</executions>
+				</executions> -->
 				<configuration>
 					<fork>true</fork>
 				</configuration>
 			</plugin>
-			<plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
 		</plugins>
 	</build>
 

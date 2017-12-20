@@ -19,11 +19,10 @@ package com;
 
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
@@ -40,8 +39,7 @@ import de.codecentric.boot.admin.config.EnableAdminServer;
  * @date 2017年3月28日 下午1:05:22
  */
 @SpringBootApplication
-@EnableAspectJAutoProxy
-@EnableAsync
+@EnableAutoConfiguration
 @EnableAdminServer
 @ComponentScan("com.rest.api")
 public class Application extends WebMvcConfigurerAdapter{

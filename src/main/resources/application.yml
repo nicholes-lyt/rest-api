@@ -1,4 +1,4 @@
-
+management.security.enabled: false
 spring:
   application.name: rest-api
   profiles.active: test_local
@@ -21,7 +21,7 @@ logging:
 
     
 server:
-  port: 8088
+  port: 8089
   compression:
     enabled: true
     mime-types: application/json,application/xml,text/html,text/javascript,text/css,text/xml,text/plain
