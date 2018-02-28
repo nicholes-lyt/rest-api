@@ -10,6 +10,7 @@ import com.rest.api.Interceptor.RestApiInterceptor;
 @Configuration
 public class RestApiConfiguration extends WebMvcConfigurerAdapter{
 	
+	@SuppressWarnings("unused")
 	@Autowired
 	private RestApiInterceptor restApiInterceptor;
 	

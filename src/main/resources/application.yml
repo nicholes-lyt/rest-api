@@ -1,4 +1,7 @@
 management.security.enabled: false
+security.user.name: admin
+security.user.password: admin
+management.security.roles: SUPERUSER
 spring:
   application.name: rest-api
   profiles.active: test_local
@@ -11,7 +14,12 @@ spring:
   boot:  
     admin:  
       context-path: /sba    #配置访问路径为http://localhost:8088/sba
-
+  #MQ
+  rabbitmq: 
+    host: 192.168.20.4
+    port: 5672
+    username: guest
+    password: guest
 
 logging:
   file: ${spring.application.name}

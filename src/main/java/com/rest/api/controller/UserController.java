@@ -83,6 +83,7 @@ public class UserController{
 		for(int i = 0;i<30;i++) {
 			User user = new User();
 			user.setName("用户"+i);
+			user.setPassword("1233");
 			user.setToken("token_"+(new Random().nextInt(10000)*9+1));
 			user.setSex(i % 2 == 0 ? 1 : 2);// 1男 2女
 			list.add(user);
