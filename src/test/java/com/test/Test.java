@@ -1,16 +1,20 @@
 package com.test;
 
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Test {
-	public static void main(String[] args) {
-		String start = "2016-10-18 05:21:00";
-		DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); 
-        Date now = new Date();
-        System.out.println("total day:"+getDistanceTime(start, df.format(now)));
+	public static void main(String[] args) throws Exception {
+		String start = "2017-04-10";
+        Long day = getDistanceDays(start, "2017-12-31");
+        BigDecimal d = new BigDecimal(day);
+        BigDecimal c = new BigDecimal("365");
+        BigDecimal result =  d.divide(c, 5, BigDecimal.ROUND_HALF_UP);
+        BigDecimal njDay = result.multiply(new BigDecimal(5));
+        System.out.println("total day:"+njDay);
 	}
 	
 	/** 

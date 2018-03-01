@@ -25,6 +25,12 @@ public class ReceiveMsg {
 		System.out.println("MQBean"+ new Date() + ": " + JSON.toJSONString(mq));
 	}
 	
+	@RabbitListener(queues="topic")
+	@RabbitHandler
+	public void processTopic(@Payload MQBean mq) {
+		System.out.println("topic: MQBean"+ new Date() + ": " + JSON.toJSONString(mq));
+	}
+	
 	
 	
 }
