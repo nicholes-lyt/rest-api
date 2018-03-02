@@ -16,19 +16,20 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		<tomcat.version>8.5.23</tomcat.version>
+		<tomcat.version>8.5.28</tomcat.version>
 		<thymeleaf-layout-dialect.version>2.2.2</thymeleaf-layout-dialect.version>
 		<thymeleaf-extras-springsecurity4.version>3.0.8.RELEASE</thymeleaf-extras-springsecurity4.version>
 		<slf4j.version>1.7.25</slf4j.version>
 		<springfox-swagger2.version>2.2.2</springfox-swagger2.version>
 		<springfox-swagger-ui.version>2.2.2</springfox-swagger-ui.version>
 		<fastjson.version>1.1.41</fastjson.version>
+		<hibernate.version>5.2.10.Final</hibernate.version>
 	</properties>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.10.RELEASE</version>
+		<version>2.0.0.RELEASE</version>
 	</parent>
 
 	<repositories>
@@ -107,7 +108,7 @@
 			<artifactId>spring-boot-configuration-processor</artifactId>
 			<optional>true</optional>
 		</dependency>
-		<!-- 监控 -->
+		<!-- 监控
 		<dependency>
 		    <groupId>de.codecentric</groupId>  
 		    <artifactId>spring-boot-admin-server</artifactId>  
@@ -118,7 +119,7 @@
 		    <artifactId>spring-boot-admin-server-ui</artifactId>  
 		    <version>1.5.6</version>  
 		</dependency> 
-		
+		 -->
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>

@@ -27,9 +27,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
-import de.codecentric.boot.admin.config.EnableAdminServer;
+//import de.codecentric.boot.admin.config.EnableAdminServer;
 
 /**
  * 
@@ -41,10 +40,10 @@ import de.codecentric.boot.admin.config.EnableAdminServer;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-@EnableAdminServer
+//@EnableAdminServer
 @EnableAsync
 @EnableScheduling
-public class Application extends WebMvcConfigurerAdapter{
+public class Application{
 	
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);

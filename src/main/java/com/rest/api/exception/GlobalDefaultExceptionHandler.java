@@ -44,7 +44,6 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
 	
 	private Logger logger = LoggerFactory.getLogger(GlobalDefaultExceptionHandler.class);
 
-	@SuppressWarnings("deprecation")
 	@Override
 	@ResponseBody
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
@@ -53,8 +52,7 @@ public class GlobalDefaultExceptionHandler extends ResponseEntityExceptionHandle
         logger.error(ex.getMessage(), ex);
 		Result<Object> result = new Result<Object>();
 		String msg = "系统内部错误";
-		if (ex instanceof org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException
-				|| ex instanceof NoHandlerFoundException) {
+		if (ex instanceof NoHandlerFoundException) {
 			msg = "未找到";
 		} else if (ex instanceof HttpRequestMethodNotSupportedException) {
 			msg = "方法禁用";

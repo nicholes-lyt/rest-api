@@ -3,12 +3,11 @@ package com.rest.api.config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 import com.rest.api.Interceptor.RestApiInterceptor;
 
 @Configuration
-public class RestApiConfiguration extends WebMvcConfigurerAdapter{
+public class RestApiConfiguration{
 	
 	@SuppressWarnings("unused")
 	@Autowired
@@ -25,7 +24,6 @@ public class RestApiConfiguration extends WebMvcConfigurerAdapter{
 	 * @throws 异常类型 说明
 	 * @see org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter#addInterceptors(org.springframework.web.servlet.config.annotation.InterceptorRegistry)
 	 */
-	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		//registry.addInterceptor(restApiInterceptor);
 	}

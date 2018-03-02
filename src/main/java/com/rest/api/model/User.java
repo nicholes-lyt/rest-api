@@ -1,6 +1,7 @@
 package com.rest.api.model;
 
-import org.hibernate.validator.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -17,18 +18,18 @@ import io.swagger.annotations.ApiModelProperty;
 public class User{
 
 	@ApiModelProperty(value = "姓名", required = true)
-	@NotBlank(message="姓名不能为空!")
+	@NotEmpty(message="姓名不能为空!")
 	private String name;
 	
 	@ApiModelProperty(value = "密码", required = true)
 	private String password;
 	
-	@NotBlank(message="性别不能为空!")
+	@NotNull(message="性别不能为空!")
 	@ApiModelProperty(value = "性别")
 	private Integer sex;
 	
 	@ApiModelProperty(value = "票据", required = true)
-	@NotBlank(message="票据不能为空!")
+	@NotEmpty(message="票据不能为空!")
 	private String token;
 
 	public String getToken() {

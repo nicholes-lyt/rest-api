@@ -1,7 +1,9 @@
+
 management.security.enabled: false
 security.user.name: admin
 security.user.password: admin
 management.security.roles: SUPERUSER
+
 spring:
   application.name: rest-api
   profiles.active: test_local
@@ -22,12 +24,13 @@ spring:
     password: guest
 
 logging:
+  level:
+    root: INFO
   file: ${spring.application.name}
   
-  
----  
 
-    
+  
+---
 server:
   port: 8089
   compression:
