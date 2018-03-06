@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 
-import com.rest.api.Interceptor.RestApiInterceptor;
+import com.rest.api.interceptor.RestApiInterceptor;
 
 @Configuration
 public class RestApiConfiguration{

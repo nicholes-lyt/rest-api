@@ -1,4 +1,4 @@
-package com.rest.api.Interceptor;
+package com.rest.api.interceptor;
 
 import java.lang.reflect.Method;
 
@@ -74,8 +74,9 @@ public class RestApiInterceptor extends HandlerInterceptorAdapter{
 	 */
 	@SuppressWarnings("unused")
 	private User getLoginUser(HttpSession session) {
-		if (session == null)
+		if (session == null) {
 			return null;
+		}	
 		Object obj = session.getAttribute("loginUser");
 		return obj != null && obj instanceof User ? (User) obj : null;
 	}
