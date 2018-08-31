@@ -18,7 +18,7 @@ spring:
       context-path: /sba    #配置访问路径为http://localhost:8088/sba
   #MQ
   rabbitmq: 
-    host: 192.168.20.4
+    host: localhost
     port: 5672
     username: guest
     password: guest
